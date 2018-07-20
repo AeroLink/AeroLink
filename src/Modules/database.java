@@ -54,7 +54,7 @@ public abstract class database {
     
     public boolean hasConnection(){
         try {
-            return !this.CONNECTION.isClosed() || this.CONNECTION != null;
+            return this.CONNECTION != null && !this.CONNECTION.isClosed();
         } catch (SQLException ex) {
             return false;
         }

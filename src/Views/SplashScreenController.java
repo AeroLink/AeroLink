@@ -5,13 +5,18 @@
  */
 package Views;
 
+import Helpers.AlertResponse;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
+import javafx.stage.StageStyle;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -21,7 +26,19 @@ import javafx.scene.control.ProgressBar;
 public class SplashScreenController implements Initializable {
 
     Controllers.SplashScreen cc = new Controllers.SplashScreen();
-            
+    
+    public Boolean passed = false;
+    public Thread th;
+    
+    public void setPassed(Boolean passed) {
+        this.passed = passed;
+    }
+
+    public Boolean getPassed() {
+        return passed;
+    }
+    
+    
     @FXML
     private ProgressBar LoadingBar;
 
@@ -37,7 +54,7 @@ public class SplashScreenController implements Initializable {
     
     //Async Block
     public void tick(){
-       new Thread(new Runnable(){
+       th = new Thread(new Runnable(){
            @Override
            public void run() {
                Double prog  = .01;
@@ -50,15 +67,31 @@ public class SplashScreenController implements Initializable {
                    
                    if(LoadingBar.progressProperty().floatValue() == 0.5f ) {
                        if (!cc.checkCon()){
-                        System.out.println("err");
+                           JOptionPane.showMessageDialog(null, "Error while connecting to database");
+                           System.exit(0);
                        }
                    }
                    
                    LoadingBar.setProgress(prog += .01);
                }
+               
+              PassedLogin();
            }
        
-       }).start(); 
+       });
        
+       th.start();
+       
+    }
+    
+    public void PassedLogin(){
+       Platform.runLater(new Runnable(){
+           @Override
+           public void run() {
+                Helpers.Form.close(LoadingBar);
+        new Helpers.Form("/FXMLS/Login.fxml").open(StageStyle.UNDECORATED);
+           }
+       
+       });
     }
 }
