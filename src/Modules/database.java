@@ -48,15 +48,18 @@ public abstract class database {
             System.out.println(ex.getMessage());
             return false;
         } 
+        
     }
     
     
-            public boolean hasConnection(){
+    public boolean hasConnection(){
         try {
             return !this.CONNECTION.isClosed() || this.CONNECTION != null;
         } catch (SQLException ex) {
             return false;
         }
+        
+        
     }
 
     
