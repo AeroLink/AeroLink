@@ -5,7 +5,9 @@
  */
 package Model;
 
+import Modules.Core;
 import Modules.Model;
+
 
 
 /**
@@ -16,7 +18,7 @@ public class Permissions extends Model{
     
     
     public Permissions(){
-        
+        this.table = "tbl_permissions";
     }
     
 }

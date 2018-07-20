@@ -13,6 +13,8 @@ import Model.Permissions;
  */
 public class permissionController {
 
-    
+    public void getAll(){
+        System.out.println(new Permissions().get());
+    }
     
 }

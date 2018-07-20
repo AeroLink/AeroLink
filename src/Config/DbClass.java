@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class DbClass {
     
      public String Host = "jdbc:mysql://localhost:3306/";
-    public String Database = "agun";
+    public String Database = "aerolink";
     public String User = "root";
     public String Password = "";
     

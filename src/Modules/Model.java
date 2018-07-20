@@ -14,46 +14,39 @@ import java.util.List;
  */
 public class Model implements Blueprint{
     
-    private String[] columns;
-    private String table;
-    protected Core core;
     
-    
-    public Model() {
-    }
+    public String table;
 
-    public Model(String[] columns, String table) {
-        this.columns = columns;
+    public void setTable(String table) {
         this.table = table;
     }
 
     @Override
     public List get() {
-      this.core.table = this.table;
-      return null;
+        Core c = new Core(this.table);
+        return c.get();
     }
 
     @Override
     public Boolean insert(String... values) {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Boolean insert(HashMap values) {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Boolean update(String... values) {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Boolean update(HashMap values) {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     
-   
-   
+    
+    
 }

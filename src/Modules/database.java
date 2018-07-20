@@ -41,7 +41,7 @@ public abstract class database {
             DbClass n = new DbClass();
             com.mysql.jdbc.Connection connection = (com.mysql.jdbc.Connection) DriverManager.getConnection(n.getHost() + n.getDatabase(), n.getUser(), n.getPassword());
             
-        //    this.setConnection(connection);
+            this.setConnection(connection);
             return true;
             
         } catch (ClassNotFoundException | SQLException ex) {
