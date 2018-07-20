@@ -22,37 +22,37 @@ public class DbClass {
     
     
 
-                            public String getHost() {
-                                return Host;
-                            }
+    public String getHost() {
+        return Host;
+    }
 
-                            public String getDatabase() {
-                                return Database;
-                            }
+    public String getDatabase() {
+        return Database;
+    }
 
-                            public String getUser() {
-                                return User;
-                            }
+    public String getUser() {
+        return User;
+    }
 
-                            public String getPassword() {
-                                return Password;
-                            }
+    public String getPassword() {
+        return Password;
+    }
 
-                            public void setHost(String Host) {
-                                this.Host = Host;
-                            }
+    public void setHost(String Host) {
+        this.Host = Host;
+    }
 
-                            public void setDatabase(String Database) {
-                                this.Database = Database;
-                            }
+    public void setDatabase(String Database) {
+        this.Database = Database;
+    }
 
-                            public void setUser(String User) {
-                                this.User = User;
-                            }
+    public void setUser(String User) {
+        this.User = User;
+    }
 
-                            public void setPassword(String Password) {
-                                this.Password = Password;
-                            }
+    public void setPassword(String Password) {
+        this.Password = Password;
+    }
 
 
 
