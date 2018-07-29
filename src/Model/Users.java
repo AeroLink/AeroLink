@@ -7,17 +7,14 @@ package Model;
 
 import Modules.Model;
 
-
-
 /**
  *
  * @author Lei
  */
-public class Permissions extends Model{
-    
-    
-    public Permissions(){
-        this.table = "tbl_permissions";
+public class Users extends Model{
+
+    public Users() {
+        this.table = "tbl_users";
     }
     
 }

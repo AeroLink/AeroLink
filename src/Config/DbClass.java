@@ -6,16 +6,13 @@
 
 package Config;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 /**
  * 
  * @author Eden Ramoneda
  */
 public class DbClass {
     
-     public String Host = "jdbc:mysql://localhost:3306/";
+    public String Host = "jdbc:mysql://localhost:3306/";
     public String Database = "aerolink";
     public String User = "root";
     public String Password = "";

@@ -3,21 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
-
-import Modules.Model;
-
-
+package Controllers.USM;
 
 /**
  *
  * @author Lei
  */
-public class Permissions extends Model{
-    
-    
-    public Permissions(){
-        this.table = "tbl_permissions";
-    }
+public class loginController {
     
 }

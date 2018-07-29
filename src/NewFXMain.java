@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import Controller.USM.permissionController;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -16,7 +16,9 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        new permissionController().getAll();
+        HashMap hm = new HashMap(Modules.Crypt.Encrypt("edenramoneda"));
+        
+        System.out.println(Modules.Crypt.Decrypt((byte[]) hm.get("iv"), (byte[]) hm.get("cipher")));
     }
 
     /**

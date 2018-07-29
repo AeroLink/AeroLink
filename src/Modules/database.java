@@ -59,7 +59,6 @@ public abstract class database {
             return false;
         }
         
-        
     }
 
     

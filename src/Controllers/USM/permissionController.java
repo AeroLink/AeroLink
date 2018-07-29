@@ -3,21 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Controllers.USM;
 
-import Modules.Model;
-
-
+import Model.Permissions;
 
 /**
  *
  * @author Lei
  */
-public class Permissions extends Model{
-    
-    
-    public Permissions(){
-        this.table = "tbl_permissions";
+public class permissionController {
+
+    public void getAll(){
+        System.out.println(new Permissions().get());
     }
     
 }

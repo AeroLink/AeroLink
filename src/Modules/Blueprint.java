@@ -16,6 +16,8 @@ public interface Blueprint {
     
     public List get();
     
+    public List get(String... values);
+    
     public Boolean insert(String... values);
     
     public Boolean insert(HashMap values);

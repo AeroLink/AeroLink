@@ -7,7 +7,6 @@ package Modules;
 
 import java.util.HashMap;
 import java.util.List;
-
 /**
  *
  * @author Lei
@@ -46,7 +45,21 @@ public class Model implements Blueprint{
     public Boolean update(HashMap values) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List get(String... values) {
+        Core c = new Core(this.table);
+        return c.get(values);
+    }
     
+    
+    public Core where(String[][] values) {
+        Core c = new Core(this.table);
+        c.setWhere(true);
+        c.setWhereValues(values);
+        
+        return c;
+    }
     
     
 }

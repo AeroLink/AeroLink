@@ -5,18 +5,18 @@
  */
 package Views;
 
-import Helpers.AlertResponse;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
+import Modules.Module;
+import Modules.Route;
+import Modules.Session;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -29,6 +29,10 @@ public class SplashScreenController implements Initializable {
     
     public Boolean passed = false;
     public Thread th;
+    @FXML
+    private Label loadingPercentage;
+    @FXML
+    private Label loadingStatus;
     
     public void setPassed(Boolean passed) {
         this.passed = passed;
@@ -48,36 +52,30 @@ public class SplashScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tick();
+        
     }    
-    
-   
     
     //Async Block
     public void tick(){
-       th = new Thread(new Runnable(){
-           @Override
-           public void run() {
-               Double prog  = .01;
-               while(LoadingBar.progressProperty().floatValue() != 1f ) {
-                   try {
-                       Thread.sleep(50);
-                   } catch (InterruptedException ex) {
-                       
-                   }
+       th = new Thread(() -> {
+           Double prog  = .01;
+           while(LoadingBar.progressProperty().floatValue() != 1f ) {
+               
+               try {
+                   Thread.sleep(50);
+               } catch (InterruptedException ex) {
                    
-                   if(LoadingBar.progressProperty().floatValue() == 0.5f ) {
-                       if (!cc.checkCon()){
-                           JOptionPane.showMessageDialog(null, "Error while connecting to database");
-                           System.exit(0);
-                       }
-                   }
-                   
-                   LoadingBar.setProgress(prog += .01);
                }
                
-              PassedLogin();
+               initRoutingTable();
+               initSession();
+               initConnection();
+               LoadingBar.setProgress(prog += .01);
+               ControlPercent(String.valueOf((Math.round(prog * 100))) + " %");
+               
            }
        
+           PassedLogin();
        });
        
        th.start();
@@ -85,13 +83,47 @@ public class SplashScreenController implements Initializable {
     }
     
     public void PassedLogin(){
-       Platform.runLater(new Runnable(){
-           @Override
-           public void run() {
-                Helpers.Form.close(LoadingBar);
-        new Helpers.Form("/FXMLS/Login.fxml").open(StageStyle.UNDECORATED);
-           }
-       
+       Platform.runLater(() -> {
+           Helpers.Form.close(LoadingBar);
+           Helpers.Form frm = new Helpers.Form("/FXMLS/MainDash.fxml");
+           frm.open(StageStyle.UNDECORATED, true);
        });
+    }
+
+    public void ControlText(String text){
+        Platform.runLater(() -> {
+            this.loadingStatus.setText(text);
+        });
+    }
+    
+    public void ControlPercent(String text){
+        Platform.runLater(() -> {
+            this.loadingPercentage.setText(text);
+        });
+    }
+    
+    public void initRoutingTable(){
+        if(LoadingBar.progressProperty().floatValue() == 0.2f ) {
+            ControlText("Loading Routes");
+            new Module(new Route()).init();
+        }
+    }
+    
+    public void initSession(){
+        if(LoadingBar.progressProperty().floatValue() == 0.4f ) {
+           ControlText("Loading Session");
+           new Module(new Session()).init();
+        }
+    }
+
+    public void initConnection(){
+        if(LoadingBar.progressProperty().floatValue() == 0.5f ) {
+            ControlText("Connecting to Server");
+            if (!cc.checkCon()){
+                JOptionPane.showMessageDialog(null, "Error while connecting to database");
+                System.exit(0);
+            }
+            ControlText("Connected to Server");
+        }
     }
 }

@@ -65,6 +65,19 @@ public class Form {
         this.stage.show();
     }
     
+    public void open(StageStyle stageSytle, Boolean isFullScreen){
+        
+        Scene s = new Scene(this.parent);
+        
+        if (isFullScreen) {
+           this.stage.setFullScreen(true);
+        }
+        
+        this.stage.initStyle(stageSytle);
+        this.stage.setScene(s);
+        this.stage.show();
+    }
+    
     public static void close(Stage target){
         target.close();
     }

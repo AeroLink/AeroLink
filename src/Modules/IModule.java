@@ -3,21 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
-
-import Modules.Model;
-
-
+package Modules;
 
 /**
  *
- * @author Lei
+ * @author ARIELLECIAS
  */
-public class Permissions extends Model{
+public interface IModule {
     
-    
-    public Permissions(){
-        this.table = "tbl_permissions";
-    }
+    public void init();
     
 }
